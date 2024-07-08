@@ -55,7 +55,6 @@ namespace DAL.DataServices
             }
             catch (Exception)
             {
-
                 throw;
             }
             return result;
