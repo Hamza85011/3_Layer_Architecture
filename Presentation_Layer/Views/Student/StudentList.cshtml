@@ -1,0 +1,46 @@
+﻿@model BOL.CommonEntites.StudentModule;
+
+<h3>Student List</h3>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <h3>Students List</h3>
+    </div>
+    <div class="col-lg-6">
+        <a href="@Url.Action("https://localhost:7158/Student/CreateStudent") class="btn btn-primary">Add New Student</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">StudentId</th>
+                    <th scope="col">First_Name</th>
+                    <th scope="col">Last_Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    if(Model != null && Model.StudentList != null && Model.StudentList.Count()>0)
+                    {
+                        foreach(var item in Model.StudentList)
+                        {
+                            <tr>
+                                <th scope="row">@item.StudentId</th>
+                                <td>@item.First_Name</td>
+                                <td>@item.Last_Name</td>
+                                <td>@item.Email</td>
+                            </tr>
+
+                        }
+                    }
+                }
+               
+            </tbody>
+        </table>
+    </div>
+</div>

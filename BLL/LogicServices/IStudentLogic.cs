@@ -10,5 +10,6 @@ namespace BLL.LogicServices
     public interface IStudentLogic
     {
         List<Student> GetStudentListLogic();
+        string SaveStudentRecordList(Student FormData);
     }
 }

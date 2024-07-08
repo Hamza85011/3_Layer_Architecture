@@ -26,7 +26,7 @@ namespace DAL.DataServices
             {
                 using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
                 {
-                    string SqlQuery = "Select * from Students";
+                    string SqlQuery = "Select * from Student";
                     students = dbConnection.Query<Student>(SqlQuery , commandType: CommandType.Text ).ToList();
                 }
             }
@@ -36,6 +36,29 @@ namespace DAL.DataServices
                 throw;
             }
             return students;
+        }
+        public string SaveStudentRecordDAL(Student FormData)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+                {
+                    dbConnection.Execute(@"Insert into Student(First_Name, Last_Name, Email) Values(@First_Name, @Last_Name, @Email)",
+                        new
+                        {
+                            First_Name = FormData.First_Name, Last_Name = FormData.Last_Name, Email = FormData.Email
+                        },
+                        commandType: CommandType.Text);
+                    result = "Saved Successfully";
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
         }
     }
 }

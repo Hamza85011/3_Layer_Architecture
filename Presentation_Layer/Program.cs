@@ -1,4 +1,5 @@
 using BLL.LogicServices;
+using DAL.DataContext;
 using DAL.DataServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IStudentLogic, StudentLogic>();
 
 builder.Services.AddSingleton<IStudentDataDAL, StudentDataDAL>();
+
+builder.Services.AddSingleton<IDapperOrmHelper, DapperOrmHelper>();
 
 var app = builder.Build();
 
@@ -29,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Student}/{action=StudentList}/{id?}");
 
 app.Run();

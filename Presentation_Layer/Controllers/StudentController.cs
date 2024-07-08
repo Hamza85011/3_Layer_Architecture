@@ -1,4 +1,5 @@
 ﻿using BLL.LogicServices;
+using BOL.CommonEntites;
 using BOL.DatabaseEntites;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,26 @@ namespace Presentation_Layer.Controllers
         [HttpGet]
         public IActionResult StudentList()
         {
-            List<Student> result = new List<Student>();
+            StudentModule Model = new StudentModule();
 
-            result = _studentLogic.GetStudentListLogic().ToList();
+            Model.StudentList = _studentLogic.GetStudentListLogic().ToList();
                 
-            return View(result);
+            return View(Model);
+        }
+        [HttpGet]
+        public IActionResult CreateStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateStudentPost(Student FormData)
+        {
+            string result  = _studentLogic.SaveStudentRecordList(FormData);
+            if(result == "Saved Successfully")
+            {
+                return RedirectToAction("StudentList");
+            }
+            return View();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace DAL.DataServices
     public interface IStudentDataDAL
     {
         List<Student> GetStudentListDAL();
+        string SaveStudentRecordDAL(Student FormData);
     }
 }
