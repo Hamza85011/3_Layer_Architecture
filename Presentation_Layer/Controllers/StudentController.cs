@@ -30,11 +30,13 @@ namespace Presentation_Layer.Controllers
         public IActionResult CreateStudentPost(Student FormData)
         {
             string result  = _studentLogic.SaveStudentRecordList(FormData);
-            if(result == "Saved Successfully")
+            if (result != null)
             {
-                return RedirectToAction("StudentList");
+                return RedirectToAction("StudentList" , "Student");
             }
-            return View();
+            else {
+                return RedirectToAction("CreateStudent", "Student");
+            }
         }
     }
 }

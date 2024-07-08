@@ -26,10 +26,10 @@ namespace BLL.LogicServices
         public string SaveStudentRecordList(Student FormData)
         {
             string result = string.Empty;
-            //if (String.IsNullOrWhiteSpace(FormData.First_Name) || String.IsNullOrWhiteSpace(FormData.Last_Name) || String.IsNullOrWhiteSpace(FormData.Email))
-            //{
-            //    result = "Please Fill all the Fields!";
-            //}
+            if (String.IsNullOrWhiteSpace(FormData.First_Name) || String.IsNullOrWhiteSpace(FormData.Last_Name) || String.IsNullOrWhiteSpace(FormData.Email))
+            {
+                result = "Please Fill all the Fields!";
+            }
 
             _studentDataDAL.SaveStudentRecordDAL(FormData);
             return result;

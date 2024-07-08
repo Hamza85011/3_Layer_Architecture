@@ -44,20 +44,25 @@ namespace DAL.DataServices
             {
                 using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
                 {
-                    dbConnection.Execute(@"Insert into Student(First_Name, Last_Name, Email) Values(@First_Name, @Last_Name, @Email)",
-                        new
-                        {
-                            First_Name = FormData.First_Name, Last_Name = FormData.Last_Name, Email = FormData.Email
-                        },
-                        commandType: CommandType.Text);
+                    string sql = @"INSERT INTO Student (First_Name, Last_Name, Email) 
+                           VALUES (@First_Name, @Last_Name, @Email)";
+                    var parameters = new
+                    {
+                        FormData.First_Name,
+                        FormData.Last_Name,
+                        FormData.Email
+                    };
+
+                    dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
                     result = "Saved Successfully";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                result = $"Error: {ex.Message}";
             }
             return result;
         }
+
     }
 }
