@@ -75,9 +75,9 @@ namespace Presentation_Layer.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteStudentConfirmed(int id)
+        public IActionResult DeleteStudentConfirmed(Student student)
         {
-            bool isDeleted = _studentLogic.DeleteStudentById(id);
+            bool isDeleted = _studentLogic.DeleteStudentById(student.StudentId);
             if (isDeleted)
             {
                 return RedirectToAction("StudentList", "Student");
