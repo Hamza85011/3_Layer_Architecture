@@ -10,11 +10,9 @@ using System.Threading.Tasks;
 
 namespace DAL.DataServices
 {
-
     public class StudentDataDAL : IStudentDataDAL
     {
         private readonly IDapperOrmHelper _dapperOrmHelper;
-
         public StudentDataDAL(IDapperOrmHelper dapperOrmHelper)
         {
             _dapperOrmHelper = dapperOrmHelper;

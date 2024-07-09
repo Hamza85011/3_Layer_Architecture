@@ -17,7 +17,7 @@ namespace DAL.DataContext
         public DapperOrmHelper(IConfiguration configuration)
         {
             _configuration = configuration;
-            ConnectionString = _configuration.GetConnectionString("CS");
+            ConnectionString = _configuration.GetConnectionString("ConnectionString");
             ProviderName = "System.Data.SqlClient";
         }
         public IDbConnection GetDapperConnectionHelper()
