@@ -43,5 +43,10 @@ namespace BLL.LogicServices
             _studentDataDAL.EditStudentRecordDAL(FormData);
             return result;
         }
+        public bool DeleteStudentById(int id)
+        {
+            return _studentDataDAL.DeleteStudentByIdDAL(id);
+        }
+
     }
 }

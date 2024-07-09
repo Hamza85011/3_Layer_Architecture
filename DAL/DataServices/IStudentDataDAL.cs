@@ -13,5 +13,6 @@ namespace DAL.DataServices
         string SaveStudentRecordDAL(Student FormData);
         string EditStudentRecordDAL(Student FormData);
         Student GetStudentById(int id);
+        bool DeleteStudentByIdDAL(int id);
     }
 }

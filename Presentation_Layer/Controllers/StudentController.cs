@@ -62,5 +62,30 @@ namespace Presentation_Layer.Controllers
                 return RedirectToAction("EditStudent", "Student");
             }
         }
+
+        [HttpGet]
+        public IActionResult DeleteStudent(int id)
+        {
+            var student = _studentLogic.GetStudentById(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost, ActionName("DeleteStudent")]
+        public IActionResult DeleteStudentConfirmed(int id)
+        {
+            bool isDeleted = _studentLogic.DeleteStudentById(id);
+            if (isDeleted)
+            {
+                return RedirectToAction("StudentList", "Student");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }

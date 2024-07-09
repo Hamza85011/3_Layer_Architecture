@@ -102,7 +102,16 @@ namespace DAL.DataServices
             }
             return result;
         }
-
+        public bool DeleteStudentByIdDAL(int id)
+        {
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "DELETE FROM Student WHERE StudentID = @StudentID";
+                var parameters = new { StudentID = id };
+                int rowsAffected = dbConnection.Execute(sql, parameters);
+                return rowsAffected > 0;
+            }
+        }
 
     }
 }
