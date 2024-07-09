@@ -38,5 +38,29 @@ namespace Presentation_Layer.Controllers
                 return RedirectToAction("CreateStudent", "Student");
             }
         }
+        [HttpGet]
+        public IActionResult EditStudent(int id)
+        {
+            var student = _studentLogic.GetStudentById(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost]
+        public IActionResult EditStudentPost(Student FormData)
+        {
+            string result = _studentLogic.EditStudentRecordList(FormData);
+            if (result != null)
+            {
+                return RedirectToAction("StudentList", "Student");
+            }
+            else
+            {
+                return RedirectToAction("EditStudent", "Student");
+            }
+        }
     }
 }

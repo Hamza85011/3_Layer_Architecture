@@ -30,8 +30,17 @@ namespace BLL.LogicServices
             {
                 result = "Please Fill all the Fields!";
             }
-
             _studentDataDAL.SaveStudentRecordDAL(FormData);
+            return result;
+        }
+        public Student GetStudentById(int id)
+        {
+            return _studentDataDAL.GetStudentById(id);
+        }
+        public string EditStudentRecordList(Student FormData)
+        {
+            string result = string.Empty;
+            _studentDataDAL.EditStudentRecordDAL(FormData);
             return result;
         }
     }

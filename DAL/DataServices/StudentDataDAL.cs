@@ -63,6 +63,46 @@ namespace DAL.DataServices
             }
             return result;
         }
+        public Student GetStudentById(int id)
+        {
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "SELECT * FROM Student WHERE StudentID = @StudentID";
+                var parameters = new { StudentID = id };
+                return dbConnection.QuerySingleOrDefault<Student>(sql, parameters);
+            }
+        }
+        public string EditStudentRecordDAL(Student formData)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+                {
+                    string sql = @"UPDATE Student 
+                           SET First_Name = @First_Name, 
+                               Last_Name = @Last_Name, 
+                               Email = @Email
+                           WHERE StudentID = @StudentID";
+                    var parameters = new
+                    {
+                        formData.First_Name,
+                        formData.Last_Name,
+                        formData.Email,
+                        formData.StudentId
+                    };
+
+                    dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
+                    result = "Saved Successfully";
+                }
+            }
+            catch (Exception ex)
+            {
+                result = $"Error: {ex.Message}";
+            }
+            return result;
+        }
+
 
     }
 }

@@ -11,5 +11,7 @@ namespace DAL.DataServices
     {
         List<Student> GetStudentListDAL();
         string SaveStudentRecordDAL(Student FormData);
+        string EditStudentRecordDAL(Student FormData);
+        Student GetStudentById(int id);
     }
 }

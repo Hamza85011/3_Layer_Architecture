@@ -11,5 +11,7 @@ namespace BLL.LogicServices
     {
         List<Student> GetStudentListLogic();
         string SaveStudentRecordList(Student FormData);
+        string EditStudentRecordList(Student FormData);
+        Student GetStudentById(int id);
     }
 }

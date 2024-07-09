@@ -66,6 +66,7 @@
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,13 +80,16 @@
                                             <td>@item.First_Name</td>
                                             <td>@item.Last_Name</td>
                                             <td>@item.Email</td>
+                                            <td>
+                                                <a href="/Student/EditStudent/@item.StudentId" class="btn btn-warning btn-sm">Edit</a>
+                                            </td>
                                         </tr>
                                     }
                                 }
                                 else
                                 {
                                     <tr>
-                                        <td colspan="4">No students available.</td>
+                                        <td colspan="5">No students available.</td>
                                     </tr>
                                 }
                             }
