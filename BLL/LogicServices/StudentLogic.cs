@@ -26,7 +26,7 @@ namespace BLL.LogicServices
         public string SaveStudentRecordList(Student FormData)
         {
             string result = string.Empty;
-            if (String.IsNullOrWhiteSpace(FormData.First_Name) || String.IsNullOrWhiteSpace(FormData.Last_Name) || String.IsNullOrWhiteSpace(FormData.Email))
+            if (String.IsNullOrWhiteSpace(FormData.First_Name) || String.IsNullOrWhiteSpace(FormData.Last_Name) || String.IsNullOrWhiteSpace(FormData.Email) || int.IsPositive(FormData.Age))
             {
                 result = "Please Fill all the Fields!";
             }

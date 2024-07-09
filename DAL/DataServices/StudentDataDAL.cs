@@ -41,13 +41,14 @@ namespace DAL.DataServices
             {
                 using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
                 {
-                    string sql = @"INSERT INTO Student (First_Name, Last_Name, Email) 
-                           VALUES (@First_Name, @Last_Name, @Email)";
+                    string sql = @"INSERT INTO Student (First_Name, Last_Name, Email , Age) 
+                           VALUES (@First_Name, @Last_Name, @Email , @Age)";
                     var parameters = new
                     {
                         FormData.First_Name,
                         FormData.Last_Name,
-                        FormData.Email
+                        FormData.Email,
+                        FormData.Age
                     };
 
                     dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
@@ -79,13 +80,15 @@ namespace DAL.DataServices
                     string sql = @"UPDATE Student 
                            SET First_Name = @First_Name, 
                                Last_Name = @Last_Name, 
-                               Email = @Email
+                               Email = @Email,
+                               Age = @Age 
                            WHERE StudentID = @StudentID";
                     var parameters = new
                     {
                         formData.First_Name,
                         formData.Last_Name,
                         formData.Email,
+                        formData.Age,
                         formData.StudentId
                     };
 
