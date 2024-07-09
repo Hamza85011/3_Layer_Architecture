@@ -3,6 +3,14 @@ using BOL.CommonEntites;
 using BOL.DatabaseEntites;
 using Microsoft.AspNetCore.Mvc;
 
+//Sign_Up
+//Sign_In
+// Get List
+// Add New Record
+// Update Record
+// Delete Record
+//Details
+
 namespace Presentation_Layer.Controllers
 {
     public class StudentController : Controller
@@ -86,6 +94,16 @@ namespace Presentation_Layer.Controllers
             {
                 return View();
             }
+        }
+        [HttpGet]
+        public IActionResult StudentDetails(int id)
+        {
+            var student = _studentLogic.GetStudentDetails(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
         }
     }
 }

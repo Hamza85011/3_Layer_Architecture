@@ -14,5 +14,6 @@ namespace BLL.LogicServices
         string EditStudentRecordList(Student FormData);
         Student GetStudentById(int id);
         bool DeleteStudentById(int id);
+        Student GetStudentDetails(int id);
     }
 }

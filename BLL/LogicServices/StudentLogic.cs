@@ -47,5 +47,9 @@ namespace BLL.LogicServices
         {
             return _studentDataDAL.DeleteStudentByIdDAL(id);
         }
+        public Student GetStudentDetails(int id)
+        {
+            return _studentDataDAL.GetStudentDetailsDAL(id);
+        }
     }
 }

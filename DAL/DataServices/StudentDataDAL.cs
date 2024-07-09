@@ -112,5 +112,14 @@ namespace DAL.DataServices
                 return rowsAffected > 0;
             }
         }
+        public Student GetStudentDetailsDAL(int id)
+        {
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "SELECT * FROM Student WHERE StudentID = @StudentID";
+                var parameters = new { StudentID = id };
+                return dbConnection.QuerySingleOrDefault<Student>(sql, parameters);
+            }
+        }
     }
 }
