@@ -30,7 +30,6 @@ namespace DAL.DataServices
             }
             catch (Exception)
             {
-
                 throw;
             }
             return students;
@@ -110,6 +109,5 @@ namespace DAL.DataServices
                 return rowsAffected > 0;
             }
         }
-
     }
 }

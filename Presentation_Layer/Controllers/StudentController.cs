@@ -74,7 +74,7 @@ namespace Presentation_Layer.Controllers
             return View(student);
         }
 
-        [HttpPost, ActionName("DeleteStudent")]
+        [HttpPost]
         public IActionResult DeleteStudentConfirmed(int id)
         {
             bool isDeleted = _studentLogic.DeleteStudentById(id);
