@@ -139,9 +139,15 @@ namespace DAL.DataServices
             }
         }
 
-        public string SaveStudentRecordDAL(Student FormData)
+        public string SaveStudentRecordDAL(Student formData)
         {
-            throw new NotImplementedException();
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "INSERT INTO Student (First_Name, Last_Name, Email, Age, Subjects, Details) " +
+                             "VALUES (@First_Name, @Last_Name, @Email, @Age, @Subjects, @Details);";
+                var result = dbConnection.Execute(sql, formData);
+                return result > 0 ? "Student record saved successfully." : "Error saving student record.";
+            }
         }
     }
 }
