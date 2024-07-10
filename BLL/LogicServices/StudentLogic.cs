@@ -26,6 +26,15 @@ namespace BLL.LogicServices
             _studentDataDAL.Sign_Up_DAL(userLogin);
             return result;
         }
+        public bool Sign_In_BLL(UserLogin userLogin)
+        {
+            if (String.IsNullOrWhiteSpace(userLogin.UserName) || String.IsNullOrWhiteSpace(userLogin.Password))
+            {
+                return false;
+            }
+            return _studentDataDAL.Sign_In_DAL(userLogin);
+        }
+
         public List<Student> GetStudentListLogic()
         {
             List<Student> result = new List<Student> ();

@@ -44,6 +44,17 @@ namespace DAL.DataServices
             }
             return result;
         }
+        public bool Sign_In_DAL(UserLogin userLogin)
+        {
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "SELECT * FROM User_Login WHERE UserName = @UserName AND Password = @Password";
+                var parameters = new { UserName = userLogin.UserName, Password = userLogin.Password };
+                int count = dbConnection.ExecuteScalar<int>(sql, parameters);
+                return count > 0;
+            }
+        }
+
         public  List<Student> GetStudentListDAL()
         {
            List <Student> students = new List<Student>();
@@ -61,35 +72,8 @@ namespace DAL.DataServices
             }
             return students;
         }
-        public string SaveStudentRecordDAL(Student FormData)
-        {
-            string result = string.Empty;
-            try
-            {
-                using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
-                {
-                    string sql = @"INSERT INTO Student (First_Name, Last_Name, Email , Age, Subjects, Details) 
-                           VALUES (@First_Name, @Last_Name, @Email , @Age, @Subjects, @Details)";
-                    var parameters = new
-                    {
-                        FormData.First_Name,
-                        FormData.Last_Name,
-                        FormData.Email,
-                        FormData.Age,
-                        FormData.Subjects,
-                        FormData.Details
-                    };
+        
 
-                    dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
-                    result = "Saved Successfully";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = $"Error: {ex.Message}";
-            }
-            return result;
-        }
         public Student GetStudentById(int id)
         {
             using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
@@ -111,8 +95,8 @@ namespace DAL.DataServices
                                Last_Name = @Last_Name, 
                                Email = @Email,
                                Age = @Age,
-                               Subject = @Subject,
-                               Details = @Details,
+                               Subjects = @Subjects,
+                               Details = @Details
                            WHERE StudentID = @StudentID";
                     var parameters = new
                     {
@@ -153,6 +137,11 @@ namespace DAL.DataServices
                 var parameters = new { StudentID = id };
                 return dbConnection.QuerySingleOrDefault<Student>(sql, parameters);
             }
+        }
+
+        public string SaveStudentRecordDAL(Student FormData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

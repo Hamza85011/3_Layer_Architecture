@@ -2,6 +2,7 @@
 using BOL.CommonEntites;
 using BOL.DatabaseEntites;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 //Sign_Up
 //Sign_In
@@ -34,6 +35,29 @@ namespace Presentation_Layer.Controllers
                 return RedirectToAction("Sign_Up", "Student");
             }
         }
+
+        [HttpGet]
+        public IActionResult Sign_In()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Sign_In_User(UserLogin userLogin)
+        {
+            var result = _studentLogic.Sign_In_BLL(userLogin);
+            if (result)
+            {
+                HttpContext.Session.SetString("UserName", userLogin.UserName);
+                HttpContext.Session.SetString("Password", userLogin.Password);
+                return RedirectToAction("StudentList", "Student");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View("Sign_In");
+            }
+        }
+
 
         [HttpGet]
         public IActionResult StudentList()

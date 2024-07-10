@@ -16,5 +16,6 @@ namespace DAL.DataServices
         bool DeleteStudentByIdDAL(int id);
         Student GetStudentDetailsDAL(int id);
         string Sign_Up_DAL(UserLogin userLogin);
+        bool Sign_In_DAL(UserLogin userLogin);
     }
 }
