@@ -17,6 +17,33 @@ namespace DAL.DataServices
         {
             _dapperOrmHelper = dapperOrmHelper;
         }
+        public string Sign_Up_DAL(UserLogin userLogin)
+        {
+            string result = string.Empty;
+            try
+            {
+                using(IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+                {
+                    string sql = @"Insert into User_Login (Name, UserName, Password) " +
+                        "VALUES(@Name , @UserName , @Password)";
+                    var parameters = new
+                    {
+                        userLogin.Name,
+                        userLogin.UserName,
+                        userLogin.Password
+,
+                    };
+                    dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
+                    result = "Saved Successfully";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                result = $"Error: {ex.Message}";
+            }
+            return result;
+        }
         public  List<Student> GetStudentListDAL()
         {
            List <Student> students = new List<Student>();

@@ -1,5 +1,6 @@
 ﻿using BOL.DatabaseEntites;
 using DAL.DataServices;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,19 @@ namespace BLL.LogicServices
         {
             this._studentDataDAL = studentDataDAL;
         }
+        public string Sign_Up_BLL(UserLogin userLogin)
+        {
+            string result = string.Empty;
+            if (String.IsNullOrWhiteSpace(userLogin.Name) || String.IsNullOrWhiteSpace(userLogin.UserName) || String.IsNullOrWhiteSpace(userLogin.Password))
+            {
+                result = "Please Fill all the Fields!";
+            }
+            _studentDataDAL.Sign_Up_DAL(userLogin);
+            return result;
+        }
         public List<Student> GetStudentListLogic()
         {
             List<Student> result = new List<Student> ();
-
             result = _studentDataDAL.GetStudentListDAL();
 
             return result;

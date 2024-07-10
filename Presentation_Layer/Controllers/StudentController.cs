@@ -16,6 +16,25 @@ namespace Presentation_Layer.Controllers
             _studentLogic = studentLogic;
         }
         [HttpGet]
+        public IActionResult Sign_Up()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Sign_Up_Student(UserLogin userLogin)
+        {
+            string result = _studentLogic.Sign_Up_BLL(userLogin);
+            if (result != null)
+            {
+                return RedirectToAction("StudentList", "Student");
+            }
+            else
+            {
+                return RedirectToAction("Sign_Up", "Student");
+            }
+        }
+
+        [HttpGet]
         public IActionResult StudentList()
         {
             StudentModule Model = new StudentModule();

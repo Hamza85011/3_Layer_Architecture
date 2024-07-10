@@ -15,5 +15,6 @@ namespace BLL.LogicServices
         Student GetStudentById(int id);
         bool DeleteStudentById(int id);
         Student GetStudentDetails(int id);
+        string Sign_Up_BLL(UserLogin userLogin);
     }
 }
