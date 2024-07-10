@@ -5,11 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 //Sign_Up
 //Sign_In
-// Get List
-// Add New Record
-// Update Record
-// Delete Record
-//Details
 
 namespace Presentation_Layer.Controllers
 {
@@ -36,7 +31,7 @@ namespace Presentation_Layer.Controllers
         }
         [HttpPost]
         public IActionResult CreateStudentPost(Student FormData)
-        {
+         {
             string result  = _studentLogic.SaveStudentRecordList(FormData);
             if (result != null)
             {

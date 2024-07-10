@@ -14,5 +14,6 @@ namespace BOL.DatabaseEntites
         public string Email { get; set; }
         public int Age { get; set; }
         public string Subjects { get; set; }
+        public string Details { get; set; }
     }
 }
