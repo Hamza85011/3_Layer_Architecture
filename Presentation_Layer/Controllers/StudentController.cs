@@ -17,6 +17,7 @@ namespace Presentation_Layer.Controllers
         }
         [HttpGet]
         public IActionResult Sign_Up()
+        
         {
             return View();
         }
