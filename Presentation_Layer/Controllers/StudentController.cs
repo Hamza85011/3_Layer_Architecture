@@ -4,8 +4,6 @@ using BOL.DatabaseEntites;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
-//Sign_Up
-//Sign_In
 
 namespace Presentation_Layer.Controllers
 {
