@@ -31,7 +31,6 @@ namespace DAL.DataServices
                         userLogin.Name,
                         userLogin.UserName,
                         userLogin.Password
-,
                     };
                     dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
                     result = "Saved Successfully";
@@ -54,7 +53,16 @@ namespace DAL.DataServices
                 return count > 0;
             }
         }
-
+        public string SaveStudentRecordDAL(Student formData)
+        {
+            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
+            {
+                string sql = "INSERT INTO Student (First_Name, Last_Name, Email, Age, Subjects, Details) " +
+                             "VALUES (@First_Name, @Last_Name, @Email, @Age, @Subjects, @Details);";
+                var result = dbConnection.Execute(sql, formData);
+                return result > 0 ? "Student record saved successfully." : "Error saving student record.";
+            }
+        }
         public  List<Student> GetStudentListDAL()
         {
            List <Student> students = new List<Student>();
@@ -108,7 +116,6 @@ namespace DAL.DataServices
                         formData.Details,
                         formData.StudentId
                     };
-
                     dbConnection.Execute(sql, parameters, commandType: CommandType.Text);
                     result = "Saved Successfully";
                 }
@@ -136,17 +143,6 @@ namespace DAL.DataServices
                 string sql = "SELECT * FROM Student WHERE StudentID = @StudentID";
                 var parameters = new { StudentID = id };
                 return dbConnection.QuerySingleOrDefault<Student>(sql, parameters);
-            }
-        }
-
-        public string SaveStudentRecordDAL(Student formData)
-        {
-            using (IDbConnection dbConnection = _dapperOrmHelper.GetDapperConnectionHelper())
-            {
-                string sql = "INSERT INTO Student (First_Name, Last_Name, Email, Age, Subjects, Details) " +
-                             "VALUES (@First_Name, @Last_Name, @Email, @Age, @Subjects, @Details);";
-                var result = dbConnection.Execute(sql, formData);
-                return result > 0 ? "Student record saved successfully." : "Error saving student record.";
             }
         }
     }

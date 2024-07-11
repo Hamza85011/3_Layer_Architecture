@@ -9,13 +9,13 @@ namespace BLL.LogicServices
 {
     public interface IStudentLogic
     {
+        string Sign_Up_BLL(UserLogin userLogin);
+        bool Sign_In_BLL(UserLogin userLogin);
         List<Student> GetStudentListLogic();
         string SaveStudentRecordList(Student FormData);
         string EditStudentRecordList(Student FormData);
         Student GetStudentById(int id);
         bool DeleteStudentById(int id);
         Student GetStudentDetails(int id);
-        string Sign_Up_BLL(UserLogin userLogin);
-        bool Sign_In_BLL(UserLogin userLogin);
     }
 }
