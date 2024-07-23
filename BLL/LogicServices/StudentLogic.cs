@@ -39,7 +39,6 @@ namespace BLL.LogicServices
         {
             List<Student> result = new List<Student> ();
             result = _studentDataDAL.GetStudentListDAL();
-
             return result;
         }
         public string SaveStudentRecordList(Student FormData)
